@@ -26,6 +26,8 @@ def _random_sample_alpha(n, m, p=.01):
         return 0.
     else:
         import scipy as sp
+        import scipy.optimize
+        import scipy.stats
         # Need to search somewhere between m / n <= x <= 1.
         return sp.optimize.bisect(lambda alpha: (p - sp.stats.distributions.binom.cdf(m - 1, n, alpha)),
                                   m / float(n), 1., xtol=1e-10, maxiter=1000)
